@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const saveEntryButton = document.getElementById('save-entry');
     const cancelEntryButton = document.getElementById('cancel-entry');
     const searchInput = document.getElementById('search-input');
+    const contentTextarea = document.getElementById('entry-content');
+    const charCounter = document.getElementById('char-counter');
 
     let editingEntry = null;
 
@@ -109,6 +111,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 entry.style.display = 'none';
             }
         });
+    });
+
+    contentTextarea.addEventListener('input', function() {
+        const maxLength = 500;
+        const currentLength = contentTextarea.value.length;
+        charCounter.textContent = `${currentLength}/${maxLength}`;
+        if (currentLength > maxLength) {
+            charCounter.style.color = 'red';
+        } else {
+            charCounter.style.color = 'black';
+        }
     });
 
     // Initial load of entries
