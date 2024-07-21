@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             entryDiv.innerHTML = `
                 <h3>${entry.date}</h3>
                 <p>${entry.content}</p>
+                <p>Tags: ${entry.tags}</p>
                 <button onclick="editEntry(${index})">Edit</button>
                 <button onclick="deleteEntry(${index})">Delete</button>
             `;
@@ -29,11 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Save entry to local storage
     function saveEntry(date, content) {
         const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+        const tags = document.getElementById('entry-tags').value;
         if (editingEntry !== null) {
-            entries[editingEntry] = { date, content };
+            entries[editingEntry] = { date, content, tags };
             editingEntry = null;
         } else {
-            entries.push({ date, content });
+            entries.push({ date, content, tags });
         }
         localStorage.setItem('diaryEntries', JSON.stringify(entries));
         loadEntries();
