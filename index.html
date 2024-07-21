@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Diary</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="static/script.js" defer></script>
+</head>
+<body>
+    <h1>Personal Diary</h1>
+    <button id="new-entry">New Entry</button>
+    <input type="text" id="search-input" placeholder="Search entries...">
+    <div id="entries-container"></div>
+    <div id="entry-form-container" style="display: none;">
+        <h2 id="form-title">Add New Entry</h2>
+        <form id="entry-form">
+            <label for="entry-date">Date:</label>
+            <input type="date" id="entry-date" required>
+            <br>
+            <label for="entry-content">Content:</label>
+            <textarea id="entry-content" rows="4" cols="50" required></textarea>
+            <br>
+            <button type="submit" id="save-entry">Save Entry</button>
+            <button type="button" id="cancel-entry">Cancel</button>
+        </form>
+    </div>
+</body>
+</html>
