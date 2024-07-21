@@ -12,6 +12,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load entries from local storage
     function loadEntries() {
         const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+        document.getElementById('sort-asc').addEventListener('click', function() {
+            sortEntries('asc');
+        });
+        document.getElementById('sort-desc').addEventListener('click', function() {
+            sortEntries('desc');
+        });
+
+        function sortEntries(order) {
+            const entries = JSON.parse(localStorage.getItem('diaryEntries'));
+            entries.sort((a, b) => order === 'asc' ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date));
+            localStorage.setItem('diaryEntries', JSON.stringify(entries));
+            loadEntries();
+        }
         entriesContainer.innerHTML = '';
         entries.forEach((entry, index) => {
             const entryDiv = document.createElement('div');
