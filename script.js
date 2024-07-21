@@ -75,10 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Delete entry
     window.deleteEntry = function(index) {
-        const entries = JSON.parse(localStorage.getItem('diaryEntries'));
-        entries.splice(index, 1);
-        localStorage.setItem('diaryEntries', JSON.stringify(entries));
-        loadEntries();
+        if (confirm('Are you sure you want to delete this entry?')) {
+            const entries = JSON.parse(localStorage.getItem('diaryEntries'));
+            entries.splice(index, 1);
+            localStorage.setItem('diaryEntries', JSON.stringify(entries));
+            loadEntries();
+        }
     };
 
     // Search entries
